@@ -42,6 +42,8 @@ class DateRanger(object):
 
 接下來，就搭配 Git 版本控制與 GitHub 來慢慢將原型發展成比較有規劃的樣子。而 Git 與 GitHub 的教學在網路上也已經多不勝數，因此就不再贅述。
 
+但大家如果有興趣的話，可以看編者整理的[教學](https://github.com/spitfire-sidra/git-tutorial)
+
 再來，編者的第二個需求是希望能夠將此一套件開放原始碼，讓每個人都能夠受惠。
 
 所以最主要的部分就是必須將原本編者隨性的資料夾結構改成 pip 所規範的結構，以方便打包(packaging)。
