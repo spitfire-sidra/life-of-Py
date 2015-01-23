@@ -42,6 +42,8 @@ class DateRanger(object):
 
 接下來，就搭配 Git 版本控制與 GitHub 來慢慢將原型發展成比較有規劃的樣子。而 Git 與 GitHub 的教學在網路上也已經多不勝數，因此就不再贅述。
 
+但大家如果有興趣的話，可以看編者整理的[教學](https://github.com/spitfire-sidra/git-tutorial)
+
 再來，編者的第二個需求是希望能夠將此一套件開放原始碼，讓每個人都能夠受惠。
 
 所以最主要的部分就是必須將原本編者隨性的資料夾結構改成 pip 所規範的結構，以方便打包(packaging)。
@@ -64,7 +66,7 @@ YOUR_PACAKGE_NAME/
 檔案與資料夾用途說明：
 
 * `LICENSE.txt` 開放原始碼授權條款
-* `README.rst` 文件說明(必須以 restructedText 語法撰寫，目前 PyPi 不支援 Markdown 語法)
+* `README.rst` 文件說明(必須以 reStructuredText 語法撰寫，目前 PyPi 不支援 Markdown 語法)
 * `setup.py` 寫明套件的基本資訊與簡介，例如作者聯絡資訊(請不要寄垃圾信給我XD)，以及需要被打包的模組或者模組相依性
 * `setup.cfg` 寫明一些setup相關設定或者metadata
 * `MANIFEST.in` 除了模組之外，額外需要被打包的檔案，例如 `README.rst` 就需要放在這裡
