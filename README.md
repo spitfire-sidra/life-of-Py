@@ -64,7 +64,7 @@ YOUR_PACAKGE_NAME/
 檔案與資料夾用途說明：
 
 * `LICENSE.txt` 開放原始碼授權條款
-* `README.rst` 文件說明(必須以 restructedText 語法撰寫，目前 PyPi 不支援 Markdown 語法)
+* `README.rst` 文件說明(必須以 reStructuredText 語法撰寫，目前 PyPi 不支援 Markdown 語法)
 * `setup.py` 寫明套件的基本資訊與簡介，例如作者聯絡資訊(請不要寄垃圾信給我XD)，以及需要被打包的模組或者模組相依性
 * `setup.cfg` 寫明一些setup相關設定或者metadata
 * `MANIFEST.in` 除了模組之外，額外需要被打包的檔案，例如 `README.rst` 就需要放在這裡
