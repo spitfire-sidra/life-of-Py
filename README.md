@@ -8,11 +8,15 @@
 
 此 Python 套件名為 DateRanger，主要是寫來計算常用的商用日期區間。目前原始碼放在 GitHub 上，同時也可以透過 PyPi 安裝，如果有任何問題或者建議也歡迎在 GitHub 與編者反映。
 
+    PyPi: <https://pypi.python.org/pypi/DateRanger>
+
+    GitHub: <https://github.com/spitfire-sidra/DateRanger>
+
 ## 開發的第一步 - 檢視你的需求＆打造原型
 
 在編者的日常工作中，經常需要利用當前日期往回推算日期區間，以產生對應的數據報表，甚至一些監控的系統也需要類似的日期區間去產生對應的監控數據，每次都去翻月曆查幾號到幾號實在是相當的重複自己(repeat myself)，所以編者決定打造一個小小的拋棄式玩具，可以自動推算日期區間，以讓自己達到偷懶的目的！
 
-所以編者檢視了自己的需求，發覺自己可能需要類似以下的功能來幫助自己：
+所以編者檢視了自己的需求，發覺自己需要類似以下的功能來幫助自己：
 
 ```
 >>> date_range = DateRanger()
@@ -217,3 +221,125 @@ script:
 (...skip...)
 This makes the team terribly afraid to change code and therefore reluctant to improve the design of the code, which leads to a downward spiral of worse and worse code as the system grows.”
 
+## 開發第三步 - Code Coverage
+
+故事即將到尾聲了！
+
+最後一個故事我們來講 `Code Coverage`。
+
+事情是這樣的，編者寫了很多的測試案例，但是那麼多行的程式，到底是不是所有的程式都有被測試案例給執行過？到底有哪些地方根本沒執行過？或者哪些 `if else` 條件只測試了部分？
+
+這些問題，就交給 `Code Coverage` 來解答。
+
+[Code Coverage](http://en.wikipedia.org/wiki/Code_coverage) 在 Wikipedia 上的定義是：
+
+> In computer science, code coverage is a measure used to describe the degree to which the source code of a program is tested by a particular test suite.
+
+所以這個故事就是想知道到底咱 Code Coverage 是多少咧？
+
+首先，Python 有一個套件叫做 [coverage](http://nedbatchelder.com/code/coverage/)，可以幫助我們衡量 Code Coverage。
+
+使用的方法很簡單，以 DateRanger 為例，只要輸入以下指令就可以了：
+
+```
+$ coverage run -m unittest discover
+...................................................
+----------------------------------------------------------------------
+Ran 51 tests in 0.007s
+
+OK
+```
+
+執行完測試之後，接下來就是產生報告！接著輸入：
+
+```
+$ coverage report -m
+Name                               Stmts   Miss  Cover   Missing
+----------------------------------------------------------------
+DateRanger/__init__                  141      7    95%   193, 300-303, 312-315
+DateRanger/exceptions                  3      0   100%
+DateRanger/objects                    87      1    99%   25
+DateRanger/test/__init__               0      0   100%
+DateRanger/test/test_date_frame       90      1    99%   124
+DateRanger/test/test_date_ranger     160      5    97%   50-53, 202
+DateRanger/utils                      15      2    87%   15, 32
+----------------------------------------------------------------
+TOTAL                                496     16    97%
+```
+
+噢，淺顯易懂。平均覆蓋率到達  97%，也就是我們的測試案例，執行了約 97% 的程式碼，沒有執行到的行數就被顯示在 `Missing` 欄位中。
+
+現在我們知道測試案例的涵蓋到的程式範圍是足夠的了，但這基本上只能保證程式的基礎品質，並無法保證不會有預料之外的臭蟲出現，例如換了一個奇怪的參數時會發生什麼事呢？這只有增加一個測試才能夠知道(`抓蟲心法：不要猜，真的做了才會知道`)。
+
+編者一樣只想偷懶，不想每次都得執行 `coverage`。
+
+該換 `Coveralls` 出馬了。 `Coveralls` 是追蹤 Code Coverage 的線上服務，跟 Travis CI 一樣，只要你是在 GitHub 上開發 Open Source 專案，就能夠免費使用，而使用方法也很類似。
+
+更多關於 `Coveralls` : <https://coveralls.zendesk.com/hc/en-us>
+
+由於 DateRanger 是 Python Package ，所以可以使用以下其中一種套件來使用 `Coveralls` :
+
+- [python-coveralls](https://github.com/z4r/python-coveralls) by Andrea De Marco
+- [coveralls-python](https://github.com/coagulant/coveralls-python) by Ilya Baryshev
+
+編者選用的是 `coveralls-python` ，所以接下來就按照指示，將第 2 個故事中的 `.travis.yml` 改為：
+
+```
+language: python
+python:
+  - "2.7"
+  - "3.2"
+  - "3.3"
+  - "3.4"
+install:
+  - pip install coveralls
+script:
+  coverage run -m unittest discover
+after_success:
+  coveralls
+```
+
+上述的設定就是指，進行測試前需安裝 `coveralls` ，測試的執行變更為 `coverage run -m unittest discover` ，執行測試成功之後再執行 `coveralls` 指令將報告傳到 `Coveralls` 。
+
+改完之後，上傳到 GitHub ，接著等 Travis CI 進行測試，最後到 Coveralls 看結果，如下圖。
+
+![Coveralls](./imgs/coveralls.png)
+
+噢，好懶。打完收工。
+
+### 小結
+
+事實上，在實作 DateRanger 之前，編者僅知道 Code Coverage 的概念，並沒有實際落實到開發之中。這次透過實作 DateRanger 才學會如何實際運用，也是獲益良多。
+
+但編者的觀念是——
+
+追求高覆蓋率的測試，確實是很好的一件事，但是並不見得每一行程式真的都需要需要進行測試，例如：
+
+```
+def always_true(arg):
+    return True
+```
+
+其實不太需要額外花費心力撰寫測試，特別是現實世界中不見得有足夠的時間進行全盤的測試，在這種時候，如何挑出測試的優先次序，反而會是比較好的解決之道。
+
+而高覆蓋率的程式也不見得是強固的程式，強固的程式還是有賴於各種開發者意料之外的殘酷測試才能夠得到的。
+
+## 總結
+
+「坐而言，不如起而行。」
+
+資訊時代各種技術百家爭鳴，很多時候編者也只是看看文件、看看書，而沒有跟著實作，處於一種一知半解的狀態，久而久之也就淡忘了，根本沒有得到實質的成長。回過頭來還是要透過各種實作以及工作的參與才能夠得到真正的成長，而本文就是編者一邊實作一邊記錄的成果。
+
+希望能夠對大家有所助益！
+
+## 參考資料
+
+- https://python-packaging-user-guide.readthedocs.org/en/latest/
+- https://github.com/spitfire-sidra/git-tutorial
+- https://pypi.python.org/pypi
+- https://docs.python.org/2/library/unittest.html
+- https://nose.readthedocs.org/en/latest/
+- http://docs.travis-ci.com/
+- http://en.wikipedia.org/wiki/Code_coverage
+- http://support.coveralls.io/
+- https://github.com/coagulant/coveralls-python
