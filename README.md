@@ -1,3 +1,5 @@
+Special thanks to Annie Chen, Kun-Yu Chen, Yu-Han Lin
+
 # 少年 Py 的奇幻漂流
 
 ## 前言
