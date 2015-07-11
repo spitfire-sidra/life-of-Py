@@ -101,11 +101,11 @@ ref: https://zh.wikipedia.org/wiki/UTF-8
 
 ```
 def is_unicode(s):
-    return True if isinstance(unicode, s) else False
+    return True if isinstance(s, unicode) else False
 
 
 def is_str(s):
-    return True if isinstance(str, s) else False
+    return True if isinstance(s, str) else False
 
 
 def ensure_unicode(s, encoding='utf-8'):
