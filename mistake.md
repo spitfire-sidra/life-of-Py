@@ -136,3 +136,14 @@ try:
 except StandardError:
     print 'OOOPS!'
 ```
+
+## Generator
+
+```
+set([i for i xrange(100000)])
+
+# better ways
+set(i for i xrange(100000))
+
+{i for i xrange(1000000)}
+```

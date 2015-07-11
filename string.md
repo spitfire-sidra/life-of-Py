@@ -75,6 +75,23 @@ SyntaxError: Non-ASCII character '\xe4' in file chinese.py on line 1, but no enc
 
 這就是為何我們習慣加上 `# -*- coding: utf-8 -*-` 的原因。
 
+
+如果想要知道系統預設的 encoding 可以用 `sys` 模組的 `getdefaultencoding()` 來取得：
+
+```
+>>> import sys
+>>> sys.getdefaultencoding()
+```
+
+如果要改變系統預設編碼：
+
+```
+>>> import sys
+>>> reload(sys)  # required, 因為 python initialize 時, setdefaultencoding 會被 site.py 刪除，所以需要 reload
+>>> sys.setdefaultencoding('utf-8')
+```
+
+
 ## LENGTH
 
 Python 會因為 2 種不同的字串類型而有不同的長度計算方式，例如：
