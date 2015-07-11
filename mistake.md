@@ -106,7 +106,7 @@ dumplist()
 # [1]
 ```
 
-## Try except
+## bare except
 
 下列程式請問會發生什麼事？
 
