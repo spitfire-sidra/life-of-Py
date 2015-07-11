@@ -27,7 +27,7 @@ str3 = "\n\tHello World\n"
 
 1. unicode (Python 3 之後，字串預設都是以 unicode 儲存)
 
-2. str 或稱 byte string
+2. str 或稱 byte stream
 
 unicode 字串就是一般用 `u` 作爲 prefix 的字串，而 str 則沒有 `u` 作為 prefix 。
 
@@ -127,6 +127,8 @@ def ensure_str(s, encoding='utf-8'):
 
     return s
 
-
 ```
 
+## Format
+
+很多時候，
