@@ -106,6 +106,8 @@ dumplist()
 # [1]
 ```
 
+ref: https://docs.python.org/2/tutorial/controlflow.html#default-argument-values
+
 ## bare except
 
 下列程式請問會發生什麼事？

@@ -146,6 +146,28 @@ def ensure_str(s, encoding='utf-8'):
 
 ```
 
+## slice
+
+TODO
+
 ## Format
 
-很多時候，
+在 Python 中有 2 種 Format string 的用法：
+
+1. `%` operator (modulo)
+2. `str.format(*args, **kwargs)`
+
+使用 `%` 的方式是較舊的 format string 的用法，而在 python 2.6 之後才多了 `str.format(*args, **kwargs)` 的用法。
+
+一般較推薦使用 `str.format(*args, **kwargs)` 做 format string ，因為該用法多了若干 `%` 所不支援的方法。
+
+最簡單的例子如下：
+
+```
+>>> '%s %s' % ('Hello', 'World')
+'Hello World'
+>>> '{} {}'.format('Hello', 'World')
+'Hello World'
+```
+
+
