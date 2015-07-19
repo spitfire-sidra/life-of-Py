@@ -139,7 +139,7 @@ except StandardError:
     print 'OOOPS!'
 ```
 
-## Generator
+## Comprehension
 
 ```
 set([i for i xrange(100000)])
@@ -148,4 +148,32 @@ set([i for i xrange(100000)])
 set(i for i xrange(100000))
 
 {i for i xrange(1000000)}
+```
+
+## tuple to dictionary
+
+```
+tuples_in_list = [('key1', 'value1'), ('key2', 'value2'), ...]
+mydict = {k: v for k, v in tuples_in_list}
+
+
+# better way
+mydict = dict(tuples_in_list)
+```
+
+
+## strip newline
+
+
+```
+>>> 'Mac EOL\r'.rstrip('\r\n')
+'Mac EOL'
+>>> 'Windows EOL\r\n'.rstrip('\r\n')
+'Windows EOL'
+>>> 'Unix EOL\n'.rstrip('\r\n')
+'Unix EOL'
+
+# better way
+str = 'Windows EOL\r\n'
+str.rstrip()
 ```

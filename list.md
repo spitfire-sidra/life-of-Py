@@ -46,3 +46,38 @@ This means that the following slice returns a new (shallow) copy of the list:
 ```
 
 ref: https://docs.python.org/2/library/copy.html
+
+
+## Concatenate
+
+在 python 中 list 的合併十分簡單，可以直接使用 `+` 運算子直接合併：
+
+```
+>>> a = [1, 2, 3]
+>>> b = [4, 5, 6]
+>>> c = a + b
+>>> c
+[1, 2, 3, 4, 5, 6]
+```
+
+或者可以使用 `itertools` 模組。
+
+當需要一次走訪 2 個很大的 list 時，就建議使用 itertools 的 chain 方法，
+因為其使用 iterator 的方式將 2 個 list 內的元素走訪過一遍，不需額外建一個新的 list 存放所有元素，
+而且 itertools.chain 接受任何 iterable 類型的變數作為參數，所以可以傳 tuple, list, string...。
+
+```
+>>> import itertools
+>>> a = [1, 2, 3]
+>>> b = [4, 5, 6]
+>>> c = itertools.chain(a, b)
+```
+
+
+## 乘法的魔術
+
+```
+>>> a = [1, 2, 3]
+>>> a * 3
+[1, 2, 3, 1, 2, 3, 1, 2, 3]
+```
