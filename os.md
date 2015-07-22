@@ -95,3 +95,14 @@ for file in os.listdir('.'):
 >>> fnmatch.translate('[0-9]*.mp3')
 '[0-9].*\\.mp3\\Z(?ms)'
 ```
+
+## shutil
+
+對於需要做系統檔案相關的操作，可以看看 shutil 模組，裡面已經定義好不少方法供我們使用。
+
+例如刪除資料夾：
+
+```
+>>> import shutil
+>>> shutil.rmtree('/folder_name')
+```
