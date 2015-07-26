@@ -177,3 +177,19 @@ mydict = dict(tuples_in_list)
 str = 'Windows EOL\r\n'
 str.rstrip()
 ```
+
+## `TypeError: 'in <string>' requires string as left operand, not NoneType`
+
+```
+>>> None in ('ABC')
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+TypeError: 'in <string>' requires string as left operand, not NoneType
+```
+
+right way
+
+```
+>>> None in ('ABC',)
+False
+```
