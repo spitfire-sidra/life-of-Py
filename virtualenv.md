@@ -69,3 +69,19 @@ pip freeze > requirements.txt
 ```
 pip install -r requirements.txt
 ```
+
+## 後記
+
+python 3.3 之後為了做到跟 virtualenv 一樣的事情就多了 `venv` 模組可以使用。
+
+使用方法：
+
+```
+$ pyvenv /path/to/new/virtual/environment
+
+# or
+
+$ python -m venv myenv
+```
+
+剩下的用法與 virtualenv 相同。

@@ -139,6 +139,36 @@ except StandardError:
     print 'OOOPS!'
 ```
 
+## dict
+
+```
+def get_fruits(basket, fruit):
+    try:
+        return basket[fruit]
+    except KeyError:
+        return set()
+
+# better
+def get_fruit(basket, fruit):
+    return basket.get(fruit, set())
+```
+
+
+## set
+
+```
+def has_invalid_field(fields):
+    for field in fields:
+        if field not in ['foo', 'bar']:
+            return true
+    return False
+
+# better
+def has_invalid_fields(fields):
+     return bool(set(fields) - set(['foo’, ‘bar']))
+```
+
+
 ## Comprehension
 
 ```
@@ -192,4 +222,21 @@ right way
 ```
 >>> None in ('ABC',)
 False
+```
+
+## defaultdict
+
+```
+species = {}
+for animal, family in {'cat': 'cat', 'tiger': 'cat', 'cat': 'cat', 'dog': 'dog'}.iteritems():
+    if animal not in species:
+        species[animal] = set()
+    species[animal].add(animal)
+
+
+# better
+import collections
+species = collections.default(set)
+for animal in {'cat': 'cat', 'tiger': 'cat', 'cat': 'cat', 'dog': 'dog'}.iteritems():
+    species.add(animal)
 ```
