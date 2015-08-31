@@ -1,5 +1,22 @@
 # Common mistakes
 
+## enumerate
+
+```
+index = 1
+for c in 'abcdefghi':
+    if c == 'd':
+        print 'index is {}'.format(index)
+        break
+    index +=1
+
+
+# better
+for index, c in enumerate('abcdefghi', 1):
+    if c == 'd':
+        print 'index is {}'.format(index)
+        break
+```
 
 ## is
 
