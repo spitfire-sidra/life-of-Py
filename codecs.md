@@ -13,6 +13,18 @@ file_obj = codecs.open('utf8file.txt', 'r', 'utf-8')
 unicode_content = file_obj.read()
 ```
 
+寫入 unicode, default 的 `open()` 是寫入 `ascii`
+
+```python
+import codecs
+
+file = codecs.open('test.txt', 'w', 'utf-8')
+file.write(u'中文')
+
+file.close()
+```
+
+
 ## byte-order marker
 
 不同的硬體架構會有不同的位元組順序(byte ordering)，對於像是 UTF-16, UTF-32 這種 multi byte encodings 就會有 byte ordering 的問題，因為我們沒辦法總是知道資料是用什麼位元組順序，所以可以在資料一開始就加上幾個 byte 來說明接下來的資料是用什麼 byte ordering, codecs 裡的 byte-order marker (BOM) 就是在做這件事情。
