@@ -85,3 +85,51 @@ $ python -m venv myenv
 ```
 
 剩下的用法與 virtualenv 相同。
+
+## Virtualenvwrapper
+
+
+```
+pip install virtualenvwrapper
+```
+
+```
+mkvirtualenv <your_env_name>
+```
+
+會裝在 `~/.virtualenvs`
+
+啟用 virtualenv
+
+```
+workon <your_env_name>
+```
+
+列出 site-packages
+
+```
+lssitepackages
+```
+
+在 shell script 中啟用 virtualenv
+
+```
+source /usr/local/bin/virtualenvwrapper.sh
+workon <your_env_name>
+```
+
+列出所有 virtualenv
+
+```
+lsvirtualenv
+```
+
+刪除 virtualenv
+
+```
+rmvirtualenv <env_name>
+```
+
+更多相關指令：
+
+https://virtualenvwrapper.readthedocs.org/en/latest/command_ref.html
