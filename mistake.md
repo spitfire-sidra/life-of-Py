@@ -18,6 +18,25 @@ for index, c in enumerate('abcdefghi', 1):
         break
 ```
 
+```
+fruits = ['apple']
+animals = ['cat', 'dog', 'elephant', 'bird']
+for idx, value in enumerate(animals):
+    if value not in fruits:
+        del animals[idx]
+
+print animals
+# ['dog', 'bird'] <-- this is wrong
+
+
+# right way
+fruits = ['apple']
+animals = ['cat', 'dog', 'elephant', 'bird']
+for idx, value in reversed(list(enumerate(animals))):
+    if value not in fruits:
+        del animals[idx]
+```
+
 ## is
 
 is 比的是記憶體裡的位址，用記憶體位址判斷兩者是否相同。
