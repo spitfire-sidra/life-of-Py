@@ -170,6 +170,15 @@ def get_fruit(basket, fruit):
     return basket.get(fruit, set())
 ```
 
+do not pop/del element while iter dict
+
+```
+d = {'a': 1, 'b': 2, 'c':3}
+for k, v in d.iteritems():
+    d.pop('a')
+    #RuntimeError: dictionary changed size during iteration
+```
+
 
 ## set
 
